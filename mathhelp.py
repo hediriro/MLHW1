@@ -1,13 +1,21 @@
 import math
 import numpy as np
 
-def normalize(v):
+def round_as_naive_approach(result): # the naive way
+    if result result < 1.5:
+        return 1
+    if result >= 1.5 && result < 2.5:
+        return 2
+    if result >= 2.5:
+        return 3
+
+def normalize(v): # normalizing vectors
     norm = np.linalg.norm(v)
     if norm == 0:
         return v
     return v / norm
 
-def euklid_dist(v1, v2):
+def euklid_dist(v1, v2): # calculate eukilidan distance
     d = 0
     i = 0
     if len(v1) != len(v2):
