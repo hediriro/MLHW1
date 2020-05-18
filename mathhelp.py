@@ -11,7 +11,7 @@ def euklid_dist(v1, v2):
     d = 0
     i = 0
     if len(v1) != len(v2):
-        print("Vektoren ungleicher Länge")
+        print("Vectors do not have the same length!")
         return 0
     else:
         while i < len(v1):
