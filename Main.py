@@ -1,19 +1,15 @@
 import mathhelp
 import numpy as np
-import csv
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
 
-with open('dataset_191_wine.csv', mode='r') as csv_file:
-    csv_reader: csv.DictReader = csv.reader(csv_file, quoting=csv.QUOTE_NONNUMERIC) # from string to float
-    column_counter = 0
-    for row in csv_reader:
-        list_of_rows = list(csv_reader)  # 1st col with col_names not part of
+df = pd.read_csv('dataset_191_wine.csv')  # create data frame
+X = df.iloc[:, 1:]  # create train frame
+Y = df.iloc[:, 0]  # create target vector
+#print('X:', X.shape, ' y:', Y.shape)
+#print(X.head(), Y.head())
 
-data_set = list_of_rows
-
-for j in data_set: # remove results / 1st column
-    del j[0]
-
-for i in range(0, len(data_set)): # normalizing vectors
-    data_set[i] = mathhelp.normalize(data_set[i])
-
-
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=(1/(len(Y)-1)), random_state=42) # split sets & (len(Y)-1) -> leave one out
+#print('X_train:', X_train.shape, ' Y_train:', Y_train.shape)
+#print('X_test:', X_test.shape, ' Y_test:', Y_test.shape)
