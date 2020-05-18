@@ -3,16 +3,16 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
+from sklearn import preprocessing
 
 df = pd.read_csv('dataset_191_wine.csv')  # create data frame
 X = df.iloc[:, 1:]  # create train frame
 Y = df.iloc[:, 0]  # create target vector
 print('X:', X.shape, ' y:', Y.shape)
 
-X = mathhelp.normalize(X)  # normalizing attributes
-
-Y_h = pd.get_dummies(Y) # One Hot Encoding
-print(Y_h.head(3))
+X_norm = preprocessing.normalize(X) # normalizing attributes
+# naive is already given
+Y_ohe = pd.get_dummies(Y) # One Hot Encoding
 
 
 
