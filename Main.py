@@ -14,6 +14,14 @@ X_norm = preprocessing.normalize(X)  # normalizing attributes
 # naive is already given
 Y_ohe = pd.get_dummies(Y)  # One Hot Encoding
 
+# Naive
 X_train, X_test, Y_train, Y_test = train_test_split(X_norm, Y, test_size=(1 / len(Y)), random_state=42)  # split sets & leave one out
 print('X_train:', X_train.shape, ' Y_train:', Y_train.shape)
 print('X_test:', X_test.shape, ' Y_test:', Y_test.shape)
+# continue here ...
+
+# One Hot Encoding
+X_train_ohe, X_test_ohe, Y_train_ohe, Y_test_ohe = train_test_split(X_norm, Y_ohe, test_size=(1 / len(Y_ohe)), random_state=42)  # split sets & leave one out
+print('X_train_ohe:', X_train_ohe.shape, ' Y_train_ohe:', Y_train_ohe.shape)
+print('X_test_ohe:', X_test_ohe.shape, ' Y_test_ohe:', Y_test_ohe.shape)
+# continue here ...
