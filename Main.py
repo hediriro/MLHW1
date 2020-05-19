@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.neighbors import KNeighborsClassifier, DistanceMetric, KernelDensity
 from sklearn.metrics import classification_report
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, LeaveOneOut
 from sklearn.metrics import roc_auc_score
 from sklearn.model_selection import GridSearchCV
 from sklearn.preprocessing import normalize
@@ -25,7 +25,10 @@ print('X_test:', X_test.shape, ' Y_test:', Y_test.shape)
 
 distance_metrics = ['euclidean','manhattan','chebyshev','minkowski','wminkowski','seuclidean','mahalanobis']
 kernel_functions = ['gaussian','tophat','epanechnikov','exponential','linear','cosine']
-
+knn_naive = KNeighborsClassifier()
+hyperparameters = {'distance':distance_metrics, 'kernel':kernel_functions}
+clf = GridSearchCV(knn_naive, hyperparameters)
+#best_model = clf.fit(X_train,Y_train)
 # continue here ...
 
 # One Hot Encoding
