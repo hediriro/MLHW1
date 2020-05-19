@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-from sklearn.neighbors import KNeighborsClassifier
+from sklearn.neighbors import KNeighborsClassifier, DistanceMetric, KernelDensity
 from sklearn.metrics import classification_report
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import roc_auc_score
@@ -22,6 +22,10 @@ Y_ohe = pd.get_dummies(Y)  # One Hot Encoding
 X_train, X_test, Y_train, Y_test = train_test_split(X_norm, Y, test_size=(1 / len(Y)), random_state=42)  # split sets & leave one out
 print('X_train:', X_train.shape, ' Y_train:', Y_train.shape)
 print('X_test:', X_test.shape, ' Y_test:', Y_test.shape)
+
+distance_metrics = ['euclidean','manhattan','chebyshev','minkowski','wminkowski','seuclidean','mahalanobis']
+kernel_functions = ['gaussian','tophat','epanechnikov','exponential','linear','cosine']
+
 # continue here ...
 
 # One Hot Encoding
