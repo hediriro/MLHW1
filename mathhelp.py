@@ -1,5 +1,4 @@
 import math
-import numpy as np
 
 def euklid_dist(v1, v2): # calculate eukilidan distance
     d = 0

@@ -1,16 +1,20 @@
-import mathhelp
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import classification_report
 from sklearn.model_selection import train_test_split
-from sklearn import preprocessing, kernel_approximation, neighbors
+from sklearn.metrics import roc_auc_score
+from sklearn.model_selection import GridSearchCV
+from sklearn.preprocessing import normalize
 
 df = pd.read_csv('dataset_191_wine.csv')  # create data frame
 X = df.iloc[:, 1:]  # create train frame
 Y = df.iloc[:, 0]  # create target vector
 print('X:', X.shape, ' y:', Y.shape)
 
-X_norm = preprocessing.normalize(X)  # normalizing attributes
+X_norm = normalize(X)  # normalizing attributes
 # naive is already given
 Y_ohe = pd.get_dummies(Y)  # One Hot Encoding
 
