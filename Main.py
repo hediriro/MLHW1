@@ -1,3 +1,4 @@
+import ownneighbours
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -23,11 +24,20 @@ X_train, X_test, Y_train, Y_test = train_test_split(X_norm, Y, test_size=(1 / le
 print('X_train:', X_train.shape, ' Y_train:', Y_train.shape)
 print('X_test:', X_test.shape, ' Y_test:', Y_test.shape)
 
-distance_metrics = ['euclidean','manhattan','chebyshev','minkowski','wminkowski','seuclidean','mahalanobis']
-kernel_functions = ['gaussian','tophat','epanechnikov','exponential','linear','cosine']
 knn_naive = KNeighborsClassifier()
-hyperparameters = {'distance':distance_metrics, 'kernel':kernel_functions}
-clf = GridSearchCV(knn_naive, hyperparameters)
+k_range  = (1,40)
+distance_metrics = ['euclidean','manhattan','chebyshev','minkowski'] # ,'wminkowski','seuclidean' ,'mahalanobis'
+kernel_functions = ['gaussian','tophat','epanechnikov','exponential','linear','cosine']
+param_grid = dict(n_neighbors = k_range, metric = distance_metrics) # , algorithm = kernel_functions
+grid = GridSearchCV(knn_naive, param_grid, cv=10, scoring='accuracy')
+
+neighbors = ownneighbours.get_neighbors(X_train, X_test, 5)
+for neighbor in neighbors:
+	print(neighbor)
+prediction = ownneighbours.predict_classification(df, df[45], 3)
+print('Expected %d, Got %d.' % (dataset[0][-1], prediction))
+
+
 #best_model = clf.fit(X_train,Y_train)
 # continue here ...
 
