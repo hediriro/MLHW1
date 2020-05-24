@@ -1,17 +1,12 @@
-from math import sqrt
 import operator
 
-def euclideanDistance(instance1, instance2, length):
-	distance = 0
-	for x in range(length):
-		distance += pow((float(instance1[x]) - float(instance2[x])), 2)
-	return sqrt(distance)
+def manhattan_distance(x, y):
+	return sum(abs(a - b) for a, b in zip(x, y))
 
 def getNeighbors(trainingSet, testInstance, k):
 	distances = []
-	length = len(testInstance)-1
 	for x in range(len(trainingSet)):
-		dist = euclideanDistance(testInstance, trainingSet[x], length)
+		dist = manhattan_distance(trainingSet[x], testInstance)
 		distances.append((trainingSet[x], dist))
 	distances.sort(key=operator.itemgetter(1))
 	neighbors = []
