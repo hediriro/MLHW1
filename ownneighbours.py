@@ -1,24 +1,27 @@
 from math import sqrt
+import operator
 
-def euclidean_distance(row1, row2):
-	distance = 0.0
-	for i in range(len(row1)-1):
-		distance += (row1[i] - row2[i])**2
+def euclideanDistance(instance1, instance2, length):
+	distance = 0
+	for x in range(length):
+		distance += pow((float(instance1[x]) - float(instance2[x])), 2)
 	return sqrt(distance)
 
-def get_neighbors(train, test_row, num_neighbors):
-	distances = list()
-	for train_row in train:
-		dist = euclidean_distance(test_row, train_row)
-		distances.append((train_row, dist))
-	distances.sort(key=lambda tup: tup[1])
-	neighbors = list()
-	for i in range(num_neighbors):
-		neighbors.append(distances[i][0])
+def getNeighbors(trainingSet, testInstance, k):
+	distances = []
+	length = len(testInstance)-1
+	for x in range(len(trainingSet)):
+		dist = euclideanDistance(testInstance, trainingSet[x], length)
+		distances.append((trainingSet[x], dist))
+	distances.sort(key=operator.itemgetter(1))
+	neighbors = []
+	for x in range(k):
+		neighbors.append(distances[x][0])
 	return neighbors
 
-def predict_classification(train, test_row, num_neighbors):
-	neighbors = get_neighbors(train, test_row, num_neighbors)
+# muss angepasst werden
+def predict(trainingSet, testInstance, k):
+	neighbors = getNeighbors(trainingSet, testInstance, k)
 	output_values = [row[0] for row in neighbors]
 	prediction = max(set(output_values), key=output_values.count)
 	return prediction
