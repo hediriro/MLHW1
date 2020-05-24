@@ -22,7 +22,7 @@ grid_params_knn= {
         'metric': distance_metrics}
 
 kernel_functions = ['gaussian','tophat','epanechnikov','exponential','linear','cosine']
-kernel_bandwidths = 10 ** np.linspace(-1, 1, 100)
+kernel_bandwidths =  np.logspace(-1, 1, 20)
 grid_params_kernel= {
         'kernel': kernel_functions,
         'bandwidth': kernel_bandwidths}
