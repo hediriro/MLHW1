@@ -9,15 +9,15 @@ from sklearn.metrics import accuracy_score
 
 # Own implementations
 
-def gaussian(distances, window):
+def gaussian(distances, window): # calculation from sklearn.org (neighbors, kernel.density)
 	weigths = np.exp(-((distances**2)/(2*(window**2))))
 	return weigths
 
-def epanechnikov(distances, window):
+def epanechnikov(distances, window): # calculation from sklearn.org (neighbors, kernel.density)
 	weigths = 1 - ((distances**2)/(window**2))
 	return weigths
 
-def exponential(distances, window):
+def exponential(distances, window): # calculation from sklearn.org (neighbors, kernel.density)
 	weigths = np.exp(-distances/window)
 	return weigths
 
